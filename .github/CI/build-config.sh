@@ -9,10 +9,15 @@
 CONFIG=$1
 [[ -z $CONFIG ]] && CONFIG=Release
 
+cmake --version; ninja --version
+
 ## Set CXX_FLAGS (clang paths)
 USE_CLANG=$2
-USE_[[ -z $CLANG ]] && CLANG=TRUE
-USE_[[ $CLANG == "TRUE" ]] && CXX_FLAGS="-DCMAKE_C_CLANG=/usr/bin/clang -DCMAKE_CXX_CLANG=/usr/bin/clang++"
+[[ -z $CLANG ]] && CLANG=TRUE
+if [[ $CLANG == "TRUE" ]]; then
+	CXX_FLAGS="-DCMAKE_C_CLANG=clang -DCMAKE_CXX_CLANG=clang++"
+	clang --version
+fi
 
 ## Build config
 [[ ! -d out/$CONFIG ]] && mkdir -p out/$CONFIG
