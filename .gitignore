@@ -1,0 +1,9 @@
+# Visual Studio
+.vs/*
+CMakeSettings.json
+
+# VS Code
+.vscode/*
+
+# CMake build directory
+out/*
