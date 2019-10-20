@@ -16,7 +16,7 @@ echo "Ninja: $(ninja --version)"
 USE_CLANG=$2
 [[ -z $CLANG ]] && CLANG=TRUE
 if [[ $CLANG == "TRUE" ]]; then
-	CXX_FLAGS="-DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++"
+	CXX_FLAGS="-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
 	clang --version
 fi
 echo
