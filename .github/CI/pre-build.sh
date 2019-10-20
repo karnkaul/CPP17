@@ -9,6 +9,7 @@
 
 ENV="cmake g++-8 ninja-build"
 CLANG=$1
+[[ "$CLANG" == "TRUE" ]] && sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
 # Get latest keys for cmake, g++, etc
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
@@ -20,10 +21,10 @@ sudo apt-get purge cmake
 sudo rm -rf /usr/bin/cmake*
 sudo rm -rf /usr/share/cmake*
 sudo rm -rf /usr/local/bin/cmake*
+sudo apt autoremove
 
 # Install dependencies
 sudo apt-get update
 sudo apt-get install -y $ENV
-[[ "$CLANG" == "TRUE" ]] && sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
 exit
