@@ -29,7 +29,7 @@ sudo apt-get update
 sudo apt-get install -y $ENV
 
 if [[ "$CLANG" == "TRUE" ]]; then
-	ln -s /usr/bin/clang-8 clang
-	ln -s /usr/bin/clang++-8 clang++
+	sudo ln -s /usr/bin/clang-8 /usr/bin/clang
+	sudo ln -s /usr/bin/clang++-8 /usr/bin/clang++
 fi
 exit
