@@ -10,7 +10,7 @@
 ENV="cmake g++-8 ninja-build"
 CLANG=$1
 if [[ "$CLANG" == "TRUE" ]]; then
-	ENV="$ENV clang lld"
+	ENV="$ENV clang-8 lld-8"
 	wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key 2>/dev/null | sudo apt-key add -
 fi
 
