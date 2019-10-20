@@ -9,7 +9,7 @@
 
 ENV="cmake g++-8 ninja-build"
 CLANG=$1
-[[ "$CLANG" == "TRUE" ]] && ENV="$ENV clang-9 lld-9"
+[[ "$CLANG" == "TRUE" ]] && ENV="$ENV clang lld"
 
 # Get latest keys for cmake, g++, etc
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
