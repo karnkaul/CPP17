@@ -9,19 +9,25 @@
 
 ENV="cmake g++-8 ninja-build"
 CLANG=$1
-[[ "$CLANG" == "TRUE" ]] && sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+[[ "$CLANG" == "TRUE" ]] && ENV="$ENV clang-9 lld-9"
 
 # Get latest keys for cmake, g++, etc
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
 sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' -y
 sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
 
-# Purge all existing cmake installations
+# Purge all existing cmake/clang installations
 sudo apt-get purge cmake
+sudo apt-get purge clang
+sudo apt-get purge lld
 sudo rm -rf /usr/bin/cmake*
 sudo rm -rf /usr/share/cmake*
 sudo rm -rf /usr/local/bin/cmake*
-sudo apt autoremove
+if [[ "$CLANG" == "TRUE" ]]; then
+	sudo rm -rf /usr/bin/clang*
+	sudo rm -rf /usr/share/clang*
+	sudo rm -rf /usr/local/bin/clang*
+fi
 
 # Install dependencies
 sudo apt-get update
