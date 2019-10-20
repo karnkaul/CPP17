@@ -22,8 +22,8 @@ sudo rm -rf /usr/share/cmake*
 sudo rm -rf /usr/local/bin/cmake*
 
 # Install dependencies
+[[ "$CLANG" == "TRUE" ]] && sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 sudo apt-get update
 sudo apt-get install -y $ENV
-[[ "$CLANG" == "TRUE" ]] && bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
 exit
