@@ -20,16 +20,10 @@ sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' -y
 sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
 
 # Purge all existing cmake/clang installations
-sudo apt-get purge cmake
-sudo apt-get purge clang
-sudo apt-get purge lld
-sudo rm -rf /usr/bin/cmake*
-sudo rm -rf /usr/share/cmake*
-sudo rm -rf /usr/local/bin/cmake*
+sudo apt-get purge {cmake,clang,lld}
+sudo rm -rf /usr/{bin/cmake*,share/cmake*,local/bin/cmake*}
 if [[ "$CLANG" == "TRUE" ]]; then
-	sudo rm -rf /usr/bin/clang*
-	sudo rm -rf /usr/share/clang*
-	sudo rm -rf /usr/local/bin/clang*
+	sudo rm -rf /usr/{bin/clang*,share/clang*,local/bin/clang*}
 fi
 
 # Install dependencies
