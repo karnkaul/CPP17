@@ -12,6 +12,12 @@ CLANG=$1
 if [[ "$CLANG" == "TRUE" ]]; then
 	ENV="$ENV clang-8 lld-8"
 	wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key 2>/dev/null | sudo apt-key add -
+
+	## TEMP
+	sudo apt-get install clang-8 lld-8
+	whereis clang-8
+	exit 1
+	##
 fi
 
 # Get latest keys for cmake, g++, etc
@@ -22,12 +28,13 @@ sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
 # Purge all existing cmake/clang installations
 sudo apt-get purge {cmake,clang,lld}
 sudo rm -rf /usr/{bin/cmake*,share/cmake*,local/bin/cmake*}
-if [[ "$CLANG" == "TRUE" ]]; then
-	sudo rm -rf /usr/{bin/clang*,share/clang*,local/bin/clang*}
-fi
+[[ "$CLANG" == "TRUE" ]] &&	sudo rm -rf /usr/{bin/clang*,share/clang*,local/bin/clang*}
 
 # Install dependencies
 sudo apt-get update
 sudo apt-get install -y $ENV
 
+if [[ "$CLANG" == "TRUE" ]]; then
+	ln -s /usr/bin/clang-8 
+fi
 exit
