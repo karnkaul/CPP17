@@ -1,6 +1,11 @@
 # CPP17
 
-CPP17 is intended to serve as a base skeleton/framework for C++17 projects using CMake, integrated with GitHub Workflows for CI.
+CPP17 is intended to serve as a base skeleton/framework for C++17 projects with the following features:
+1. Configures via CMake
+1. Integrates with GitHub Workflows for CI, which uses the latest Ubuntu VM and installs following to build:
+	1. CMake 3.15
+	1. ninja 1.8
+	1. clang 8.0
 
 ## Usage
 ### Build Sample
@@ -33,3 +38,15 @@ cmake --build out/$CONFIG
 1. Fork the repository in into your own account
 1. Follow **Build Sample** to ensure project works
 1. Replace with your source code and CMake files
+
+## GitHub CI
+All GitHub related files are in `.github`:
+1. `workflows/ci.yml` sets up the overall workflow; edit the `on:` sections to adjust automated build triggers
+1. `CI/pre-build.sh` sets up the build environment; optionally pass "TRUE" to also install `clang` and `llvm`
+1. `CI/build-config.sh` builds the config passed as the first argument (`Release` if empty); pass "TRUE" as the second argument to use `/usr/bin/clang++`
+
+## GitHub Branch Protections
+In repository settings, select "Branches" and set up protections for branch wildcards to enable:
+1. Prevention of branch deletions / force pushes
+1. Require status checks to pass
+	1. After a CI Action has run, it will appear as an option here (to be selected as "Required")
