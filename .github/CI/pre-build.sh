@@ -9,7 +9,6 @@
 
 ENV="cmake g++-8 ninja-build"
 CLANG=$1
-[[ "$CLANG" == "TRUE" ]] && ENV="$ENV clang llvm"
 
 # Get latest keys for cmake, g++, etc
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
@@ -25,5 +24,6 @@ sudo rm -rf /usr/local/bin/cmake*
 # Install dependencies
 sudo apt-get update
 sudo apt-get install -y $ENV
+[[ "$CLANG" == "TRUE" ]] && bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
 exit

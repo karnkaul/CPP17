@@ -10,7 +10,7 @@ CONFIG=$1
 [[ -z $CONFIG ]] && CONFIG=Release
 
 cmake --version
-ninja --version
+echo "Ninja: $(ninja --version)"
 
 ## Set CXX_FLAGS (clang paths)
 USE_CLANG=$2
@@ -19,6 +19,7 @@ if [[ $CLANG == "TRUE" ]]; then
 	CXX_FLAGS="-DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++"
 	clang --version
 fi
+echo
 
 ## Build config
 [[ ! -d out/$CONFIG ]] && mkdir -p out/$CONFIG
