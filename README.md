@@ -1,7 +1,7 @@
 # CPP17
 
 ![](https://github.com/karnkaul/CPP17/workflows/CI/badge.svg)
-[![Licence](https://img.shields.io/github/license/karnkaul/LittleEngine)](LICENSE)
+[![Licence](https://img.shields.io/github/license/karnkaul/CPP17)](LICENSE)
 
 CPP17 is intended to serve as a base skeleton/framework for C++17 projects with the following features:
 1. Configures via CMake
