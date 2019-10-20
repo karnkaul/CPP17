@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
 
+## Notify if this is a CI build
+if(CI_BUILD)
+	message(STATUS "Configuring for CI Build")
+endif()
+
 ## Disable in-source builds
 set(CMAKE_DISABLE_SOURCE_CHANGES TRUE)
 set(CMAKE_DISABLE_IN_SOURCE_BUILD TRUE)
