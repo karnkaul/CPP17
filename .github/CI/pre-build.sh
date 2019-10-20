@@ -16,7 +16,7 @@ fi
 
 # Get latest keys for cmake, g++, etc
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
-sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main' -y
+sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' -y
 sudo -E apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
 
 # Purge all existing cmake/clang installations
